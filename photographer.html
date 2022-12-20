@@ -17,7 +17,7 @@
   </header>
   <main id="main">
     <div class="photograph-header">
-      <button id="contact" class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button id="contact" class="contact_button">Contactez-moi</button>
     </div>
   </main>
   <!--
@@ -37,31 +37,59 @@
         </div>
       </div>
     -->
+
+      <!-- GALERIE -->
+  <section id="photographer_gallery"></section>
+
+  <!-- FORMULAIRE -->
+
   <div id="contact_modal">
     <div class="modal">
-      <header>
-        <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
+
+      <header class="header-formulaire">
+        <div id="contact-header">
+          <span>Contactez-moi</span>
+          <br>
+          <span id="contact-name"></span>
+        </div>
+        <img id="close_modal" src="assets/icons/close.svg" alt="close contact form">
       </header>
-      <form>
+
+      <form id="contactForm">
         <div>
-          <label>Prénom</label>
-          <input/>
-          <label>Nom</label>
-          <input/>
-          <label>Email</label>
-          <input/>
-          <label>Votre message</label>
-          <input/>
+          <label for="firstName">Prénom</label>
+          <input type="text" id="firstName">
+
+          <label for="lastName">Nom</label>
+          <input type="text" id="lastName">
+
+          <label for="email">Email</label>
+          <input type="text" id="email">
+
+          <label for="textArea">Votre message</label>
+          <textarea form="contactForm" id="textArea"></textarea>
 
         </div>
-        <button class="contact_button">Envoyer</button>
+
+        <button id="submitForm" type="submit" class="contact_button">Envoyer</button>
+
       </form>
+
     </div>
   </div>
+
+  <!-- Api -->
+
   <script type="module" src="./scripts/api.js"></script>
+
+  <!-- Factories -->
+
   <script type="module" src="/scripts/pages/photographer.js"></script>
-  <script src="/scripts/utils/contactForm.js"></script>
+  <script type="module" src="/scripts/factories/galleryFactory.js"></script>
+
+  <!-- Utils -->
+
+  <script type="module" src="/scripts/utils/contactForm.js"></script>
 </body>
 
 </html>

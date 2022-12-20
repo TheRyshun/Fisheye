@@ -90,6 +90,7 @@ form {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 80px;
 }
 
 form label {
@@ -110,4 +111,8 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+#contact-header {
+    font-size: 64px;
 }

@@ -41,9 +41,10 @@ function profilFactory(data) {
         profilImg.setAttribute("src", picture);
         profilImg.setAttribute("alt", name);
         profilCard.appendChild(profilImg);
+
     }
-    console.log(data);
     return { id, getPhotographerProfilDOM };
+    
 }
 
 export { profilFactory };
