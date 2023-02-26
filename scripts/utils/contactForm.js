@@ -143,9 +143,7 @@ form.addEventListener("input", ValidateLastName);
 
 
 const ValidateEmail = () => {
-	const re =
-    // eslint-disable-next-line no-useless-escape
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 	const inputEmail = document.getElementById("email").value;
 	const errorEmail = document.getElementById("error-email");
@@ -153,13 +151,13 @@ const ValidateEmail = () => {
 	// Si l'input ne contient pas les strings de la variable "re" correctement alors
 	// un champ de texte apparaît pour signaler l’utilisateur.
 
-	if (!inputEmail.value.match(re)) {
-		errorEmail.textContent = "Veuillez rentrer une adresse mail valide";
-		return false;
-	} else {
+	if (re.test(inputEmail)) {
 		LogEmail = inputEmail;
 		errorEmail.textContent = "";
 		return true;
+	} else {
+		errorEmail.textContent = "Veuillez rentrer une adresse mail valide";
+		return false;
 	}
 };
 form.addEventListener("input", ValidateEmail);
