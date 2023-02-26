@@ -133,6 +133,11 @@ form textArea {
   font-size: 64px;
 }
 
+#close_modal {
+  background-color: transparent;
+  border: none;
+}
+
 #photographer_gallery {
   display: flex;
   flex-wrap: wrap;
@@ -270,9 +275,16 @@ i {
   border: none;
 }
 
+.popmedias-title {
+  color: #901c1c;
+  font-size: 24px;
+  margin: 0;
+}
+
+
 /* FILTRE  */
 .photograph_select{
-  margin: 10px 100px;
+  margin: 0px 90px;
 }
 
 label {

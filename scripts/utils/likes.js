@@ -40,6 +40,29 @@ const counterLike = (mediasArray) => {
                 }
             })
         });
+        like.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                const nombreDeLikes = like.querySelector('.number-like');
+                const picId = parseInt(like.id);
+    
+                mediasArray.forEach(medias => {
+                    if (picId === medias.id) {
+                        if (like.getAttribute("checked") === "true") {
+                            like.setAttribute("checked", false);
+                            nombreDeLikes.textContent = parseInt(nombreDeLikes.textContent) - 1;
+                            totalLikes.textContent = parseInt(totalLikes.textContent) - 1
+                        } else {
+                            like.setAttribute("checked", true);
+                            nombreDeLikes.textContent = parseInt(nombreDeLikes.textContent) + 1;
+                            totalLikes.textContent = parseInt(totalLikes.textContent) + 1;
+                        }
+                        totalLikes.appendChild(heart);
+                        console.log("L'image : [ " + medias.id + " ] à un total de like de " +
+                         nombreDeLikes.textContent + " avec un total en global de " + totalLikes.textContent);
+                    }
+                })   
+            }
+        });
     });
 }
 

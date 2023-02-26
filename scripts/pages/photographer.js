@@ -4,6 +4,7 @@ import { galleryFactory } from "../factories/galleryFactory.js";
 import { profilFactory } from "../factories/profilFactory.js";
 import { counterLike, likeTotal } from "../utils/likes.js";
 import { PopMedias } from "../utils/popmedias.js";
+import { sortGallery } from "../utils/sort.js";
 
 /*
     Function : getPhotographerId
@@ -51,7 +52,7 @@ const displayMedia = (medias) => {
 
 // LIGHTBOX
 // Fonction qui permet l'affichage de la lightbox avec event au click en récupérant leur Id
-async function displayLightbox() {
+async function displayPopMedias() {
   let Popbox = new PopMedias;
 
   document.querySelectorAll(".gallery-media").forEach((mediaDom) => {
@@ -71,11 +72,12 @@ const initPhotographer = async () => {
   const { media, photographers } = await getAPI();
   displayProfil(photographers);
   displayMedia(media);
-  displayLightbox(media);
+  displayPopMedias(media);
   counterLike(media);
   likeTotal(media);
+  sortGallery(media);
 
 };
 initPhotographer();
 
-export { getPhotographerId };
+export { getPhotographerId, displayPopMedias, displayMedia };

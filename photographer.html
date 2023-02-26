@@ -22,6 +22,7 @@
     <script type="module" src="/scripts/utils/contactForm.js" defer></script>
     <script type="module" src="/scripts/utils/likes.js" defer></script>
     <script type="module" src="/scripts/utils/popmedias.js" defer></script>
+    <script type="module" src="/scripts/utils/sort.js" defer></script>
 
 </head>
 
@@ -54,16 +55,57 @@
       </div>
     -->
 
+      <!-- FORMULAIRE -->
+
+  <div id="contact_modal">
+    <div class="modal">
+
+      <header class="header-formulaire">
+        <div id="contact-header">
+          <span>Contactez-moi</span>
+          <br>
+          <span id="contact-name"></span>
+        </div>
+        <button id="close_modal">
+          <img src="assets/icons/close.svg" alt="close contact form">
+        </button>
+      </header>
+
+      <form id="contactForm">
+        <div>
+          <label for="firstName">Prénom</label>
+          <i id="error-name"></i>
+          <input type="text" id="firstName">
+
+          <label for="lastName">Nom</label>
+          <i id="error-lastName"></i>
+          <input type="text" id="lastName">
+
+          <label for="email">Email</label>
+          <i id="error-email"></i>
+          <input type="text" id="email">
+
+          <label for="textArea">Votre message</label>
+          <i id="error-message"></i>
+          <textarea form="contactForm" id="textArea"></textarea>
+
+        </div>
+
+        <button id="submitForm" type="submit" class="contact_button">Envoyer</button>
+
+      </form>
+
+    </div>
+  </div>
+
    <!--FILTRE-->
    <div class="photograph_select">
-    <label>Trier par</label>
-        <select>
-            <option value="Popularité">Popularité</option>
-            <option class="line" disabled>---------</option>
-            <option value="Date">Date</option>
-            <option class="line" disabled>---------</option>
-            <option value="Titre">Titre</option>
-        </select>
+    <label class="sort-text">Trier par </label>
+    <select id="select">
+      <option value="date">Date</option>
+      <option value="like">Popularité</option>
+      <option value="titre">Titre</option>
+    </select>
   </div>
 
   <!-- GALERIE -->
@@ -106,47 +148,6 @@
         <span class="price-day" id="price"></span>
       </div>
     </section>
-
-  <!-- FORMULAIRE -->
-
-  <div id="contact_modal">
-    <div class="modal">
-
-      <header class="header-formulaire">
-        <div id="contact-header">
-          <span>Contactez-moi</span>
-          <br>
-          <span id="contact-name"></span>
-        </div>
-        <img id="close_modal" src="assets/icons/close.svg" alt="close contact form">
-      </header>
-
-      <form id="contactForm">
-        <div>
-          <label for="firstName">Prénom</label>
-          <i id="error-name"></i>
-          <input type="text" id="firstName">
-
-          <label for="lastName">Nom</label>
-          <i id="error-lastName"></i>
-          <input type="text" id="lastName">
-
-          <label for="email">Email</label>
-          <i id="error-email"></i>
-          <input type="text" id="email">
-
-          <label for="textArea">Votre message</label>
-          <i id="error-message"></i>
-          <textarea form="contactForm" id="textArea"></textarea>
-
-        </div>
-
-        <button id="submitForm" type="submit" class="contact_button">Envoyer</button>
-
-      </form>
-
-    </div>
-  </div>
 </body>
 
 </html>

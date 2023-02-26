@@ -1,3 +1,9 @@
+// Création d'une liste pour stocker les valeurs de "tabindex"
+var tabindexList = [];
+
+// Récupération de tous les éléments de la page
+var elements = document.getElementsByTagName("*");
+
 // Récupération de l'ID dans l'url du profil du photographe
 const getPhotographerId = () => {
   return parseInt(new URLSearchParams(window.location.search).get("id"), 10);
@@ -12,7 +18,7 @@ const ContactName = async (photographers) => {
   json = json.photographers;
   photographers = json;
 
-/*
+  /*
     -   Permet de récupérer l’ID dans l’url et vérifie si l'id du json et url ID est identique
 */
 
@@ -31,6 +37,17 @@ const form = document.querySelector("form");
 
 // Fonction pour permet d'afficher la modal du form
 const displayModal = () => {
+  // Boucle pour parcourir tous les éléments
+for (var i = 0; i < elements.length; i++) {
+  // Stockage de la valeur de "tabindex" dans la liste
+  var tabindexValue = elements[i].getAttribute("tabindex");
+  if (tabindexValue) {
+      tabindexList.push({element: elements[i]});
+  }
+  // Suppression de l'attribut "tabindex"
+  elements[i].removeAttribute("tabindex");
+}
+
   modal.style.display = "flex";
 };
 
@@ -40,6 +57,12 @@ btnContact.addEventListener("click", displayModal);
 
 // Fonction pour permet de fermer la modal du form
 const closeModal = () => {
+  // Boucle pour parcourir la liste des valeurs "tabindex"
+for (var i = 0; i < tabindexList.length; i++) {
+  // Ajout de l'attribut "tabindex"
+  tabindexList[i].element.setAttribute("tabindex", "0");
+}
+
   modal.style.display = "none";
 };
 
@@ -170,5 +193,37 @@ form.addEventListener("submit", (e) => {
     );
     form.reset();
     closeModal();
+  }
+});
+
+// Ajout d'un écouteur d'événement pour l'événement keydown
+modal.addEventListener("keydown", function (event) {
+  // Vérification si la touche tab est appuyée
+  if (event.key === "Tab") {
+    // Prévention du comportement par défaut (tabulation vers le prochain élément)
+    event.preventDefault();
+    // Récupération des éléments focusable dans la modale
+    var focusableElements = modal.querySelectorAll(
+      "textarea, input[type='text'], button"
+    );
+    // Récupération de l'index de l'élément actuellement focus
+    var focusedIndex = Array.prototype.indexOf.call(
+      focusableElements,
+      document.activeElement
+    );
+    // Si la touche tab est pressée et que l'on se trouve sur le dernier élément focusable, on remet le focus sur le premier élément
+    if (event.shiftKey) {
+      if (focusedIndex === 0) {
+        focusableElements[focusableElements.length - 1].focus();
+      } else {
+        focusableElements[focusedIndex - 1].focus();
+      }
+    } else {
+      if (focusedIndex === focusableElements.length - 1) {
+        focusableElements[0].focus();
+      } else {
+        focusableElements[focusedIndex + 1].focus();
+      }
+    }
   }
 });

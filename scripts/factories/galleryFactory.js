@@ -56,6 +56,7 @@ const galleryFactory = (data) => {
       picture.setAttribute("id", id);
       picture.setAttribute("data-index", nbmf);
       picture.setAttribute("type", "image");
+      picture.setAttribute("tabindex", "0");
       article.appendChild(picture);
       
     } else if (video) {
@@ -69,6 +70,7 @@ const galleryFactory = (data) => {
       videos.setAttribute("id", id);
       videos.setAttribute("data-index", nbmf);
       videos.setAttribute("type", "video");
+      videos.setAttribute("tabindex", "0");
 
       article.appendChild(videos);
     }
@@ -85,8 +87,9 @@ const galleryFactory = (data) => {
 
     const mediaLike = document.createElement("p");
     mediaLike.className = "like";
-
     mediaLike.setAttribute("id", id);
+    mediaLike.setAttribute("tabindex", "0");
+
 
     const numberLike = document.createElement("span");
     numberLike.className = "number-like";
