@@ -3,6 +3,7 @@ const getPhotographerId = () => {
 };
 
 let Name;
+let CurrentIndex = -1;
 
 const PhotoName = async (photographers) => {
   const photographerId = getPhotographerId();
@@ -22,7 +23,6 @@ const PhotoName = async (photographers) => {
       if (firstName.includes("-")) {
         firstName = firstName.replace(" ", "-");
       }
-      console.log(firstName);
       Name = firstName;
     }
   });
@@ -30,15 +30,21 @@ const PhotoName = async (photographers) => {
 
 PhotoName();
 
+
 const galleryFactory = (data) => {
   const { id, photographerId, image, video, likes, title } = data;
 
   const getMedia = () => {
     const article = document.createElement("article");
-    article.setAttribute("data-id", id);
     article.className = "gallery-picture";
 
+    CurrentIndex += 1;
+
+    const nbmf = CurrentIndex;
+
+
     if (image) {
+
       //Ajout d'une image
       let imageLink = `/assets/Sample Photos/${Name}/${image}`;
       const picture = document.createElement("img");
@@ -47,9 +53,11 @@ const galleryFactory = (data) => {
 
       picture.setAttribute("src", imageLink);
       picture.setAttribute("alt", title);
-      picture.setAttribute("data-id", id);
-
+      picture.setAttribute("id", id);
+      picture.setAttribute("data-index", nbmf);
+      picture.setAttribute("type", "image");
       article.appendChild(picture);
+      
     } else if (video) {
       const videoLink = `/assets/Sample Photos/${Name}/${video}`;
       const videos = document.createElement("video");
@@ -58,7 +66,9 @@ const galleryFactory = (data) => {
 
       videos.setAttribute("src", videoLink);
       videos.setAttribute("alt", title);
-      videos.setAttribute("data-id", id);
+      videos.setAttribute("id", id);
+      videos.setAttribute("data-index", nbmf);
+      videos.setAttribute("type", "video");
 
       article.appendChild(videos);
     }
@@ -73,17 +83,27 @@ const galleryFactory = (data) => {
     mediaTitle.className = "title";
     mediaTitle.textContent = title;
 
-    const mediaLikes = document.createElement("span");
-    mediaLikes.className = "likes";
-    mediaLikes.textContent = likes;
+    const mediaLike = document.createElement("p");
+    mediaLike.className = "like";
+
+    mediaLike.setAttribute("id", id);
+
+    const numberLike = document.createElement("span");
+    numberLike.className = "number-like";
+    numberLike.setAttribute("id", id);
+    numberLike.textContent = likes;
+
 
     const heart = document.createElement("i");
-    heart.className = "fa-solid fa-heart fa-2x";
+    heart.className = "fa-solid fa-heart fa";
+    heart.setAttribute("aria-label", "likes");
+    heart.setAttribute("role", "button");
 
     article.appendChild(div);
     div.appendChild(mediaTitle);
-    div.appendChild(mediaLikes);
-    div.appendChild(heart);
+    div.appendChild(mediaLike);
+    mediaLike.appendChild(numberLike);
+    mediaLike.appendChild(heart);
 
     return article;
   };

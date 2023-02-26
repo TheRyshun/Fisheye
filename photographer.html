@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -21,13 +21,14 @@
   
     <script type="module" src="/scripts/utils/contactForm.js" defer></script>
     <script type="module" src="/scripts/utils/likes.js" defer></script>
+    <script type="module" src="/scripts/utils/popmedias.js" defer></script>
 
 </head>
 
 <body>
   <header>
     <a href="/index.html">
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo" alt="Logo Fish" />
     </a>
   </header>
   <main id="main">
@@ -53,18 +54,56 @@
       </div>
     -->
 
+   <!--FILTRE-->
+   <div class="photograph_select">
+    <label>Trier par</label>
+        <select>
+            <option value="Popularité">Popularité</option>
+            <option class="line" disabled>---------</option>
+            <option value="Date">Date</option>
+            <option class="line" disabled>---------</option>
+            <option value="Titre">Titre</option>
+        </select>
+  </div>
+
   <!-- GALERIE -->
   <section id="photographer_gallery">
 
   </section>
 
+    <!-- popmedias -->
+    <div class="popmedias" aria-label="Image closeup view" role="dialog" aria-hidden="true">
+      <div class="popmedias-content">
+        <button class="popmedias-close" aria-label="Close dialog">
+          <span class="fa-solid fa-xmark" aria-hidden="true"></span>
+        </button>
+
+        <button class="popmedias-prev" aria-label="Previous image">
+          <span class="fa-solid fa-angle-left" aria-hidden="true"></span>
+        </button>  
+  
+  
+        <div class="popmedias-media">
+          <img class="popmedias-image" id="PIMG" src="" alt="">
+          <video controls autoplay class="popmedias-video" id="PVIDEO"> </video>
+          <p class="popmedias-title"></p>
+        </div>
+  
+        <button class="popmedias-next" aria-label="Next image">
+          <span class="fa-solid fa-angle-right" aria-hidden="true"></span>
+        </button>
+      </div>
+      
+      </div>
+    </div>
+
     <!-- POPUP PRIX ET LIKE -->
     <section tabindex="1" id="popup">
       <div class="popup-content">
-        <p class="profil-like">50
-          <i class="fa-solid fa-heart fa"></i>
+        <p class="profil-like" id="total-like">
+          <i id="tlike"></i>
         </p>
-        <span class="price-day">20</span>
+        <span class="price-day" id="price"></span>
       </div>
     </section>
 

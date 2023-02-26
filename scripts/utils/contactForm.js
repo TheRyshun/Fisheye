@@ -12,6 +12,10 @@ const ContactName = async (photographers) => {
   json = json.photographers;
   photographers = json;
 
+/*
+    -   Permet de récupérer l’ID dans l’url et vérifie si l'id du json et url ID est identique
+*/
+
   photographers.forEach((photographer) => {
     if (photographer.id === photographerId) {
       const profilName = document.getElementById("contact-name");
@@ -23,6 +27,7 @@ const ContactName = async (photographers) => {
 ContactName();
 
 const modal = document.getElementById("contact_modal");
+const form = document.querySelector("form");
 
 // Fonction pour permet d'afficher la modal du form
 const displayModal = () => {
@@ -47,12 +52,20 @@ let LogLastName;
 let LogEmail;
 let LogMessage;
 
+///////////////////////////////
+
+// Prénom //
+
 const ValidateName = () => {
+  //Variable sur l'input Prénom
   const inputFirstName = document.getElementById("firstName").value;
   const Nametrim = inputFirstName.trim();
   const errorName = document.getElementById("error-name");
+
+  // Quand il n'y a aucun caractère alors
+  // un champ de texte apparaît pour signaler l’utilisateur.
   if (Nametrim === "") {
-    errorName.textContent = "Veuillez renseigner le champ";
+    errorName.textContent = "Veuillez renseigner votre prénom";
     return false;
   } else {
     errorName.textContent = "";
@@ -60,14 +73,22 @@ const ValidateName = () => {
     return true;
   }
 };
+form.addEventListener("input", ValidateName);
+
+///////////////////////////////
+
+// Nom //
 
 const ValidateLastName = () => {
+  //Variable sur l'input Nom
   const inputLastName = document.getElementById("lastName").value;
   const LastNametrim = inputLastName.trim();
   const errorLastName = document.getElementById("error-lastName");
 
+  // Quand il n'y a aucun caractère alors
+  // un champ de texte apparaît pour signaler l’utilisateur.
   if (LastNametrim === "") {
-    errorLastName.textContent = "Veuillez renseigner le champ";
+    errorLastName.textContent = "Veuillez renseigner votre nom";
     return false;
   } else {
     errorLastName.textContent = "";
@@ -75,12 +96,20 @@ const ValidateLastName = () => {
     return true;
   }
 };
+form.addEventListener("input", ValidateLastName);
+
+///////////////////////////////
+
+// E-mail //
 
 const ValidateEmail = () => {
   const re =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const errorEmail = document.getElementById("error-email");
+
+  // Si l'input ne contient pas les strings de la variable "re" correctement alors
+  // un champ de texte apparaît pour signaler l’utilisateur.
 
   if (!email.value.match(re)) {
     errorEmail.textContent = "Veuillez rentrer une adresse mail valide";
@@ -91,24 +120,35 @@ const ValidateEmail = () => {
     return true;
   }
 };
+form.addEventListener("input", ValidateEmail);
+
+///////////////////////////////
+
+// Message //
 
 const ValidateMessage = () => {
+  //Variable sur l'input Message
   let inputMessage = document.getElementById("textArea").value;
   const Messagetrim = inputMessage.trim();
   const errorMessage = document.getElementById("error-message");
 
+  // Quand il n'y a aucun caractère alors
+  // un champ de texte apparaît pour signaler l’utilisateur.
+
   if (Messagetrim === "") {
-    errorMessage.textContent = "Veuillez renseigner le champ";
+    errorMessage.textContent = "Veuillez renseigner un message";
     return false;
   } else {
     errorMessage.textContent = "";
     LogMessage = Messagetrim;
     return true;
   }
+};
+form.addEventListener("input", ValidateMessage);
 
-}
+///////////////////////////////
 
-const form = document.querySelector("form");
+// Soumettre //
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();

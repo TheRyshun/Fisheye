@@ -18,9 +18,10 @@
 }
 
 .profil-card img {
-  height: 200px;
-  width: 200px;
+  height: 210px;
+  width: 210px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .profil-info {
@@ -199,4 +200,97 @@ i {
 
 .profil-like i {
   color: #000;
+}
+
+/* popmedias */
+.popmedias {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(245, 245, 245, 0.92);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popmedias.show {
+  display: flex;
+}
+
+.popmedias-content {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+}
+
+.popmedias button {
+  border: none;
+  background-color: transparent;
+  position: fixed;
+  cursor: pointer;
+  color: #901c1c;
+}
+
+.popmedias-next,
+.popmedias-prev {
+    width: 50px;
+    height: 100%;
+    top: 0;
+    right: 5%;
+    margin-top: -14px;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.popmedias-prev {
+    right: auto;
+    left: 5%;
+}
+
+
+.popmedias-close {
+  font-size: 45px;
+  top: 10px;
+  right: 5%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.popmedias-image,
+.popmedias-video {
+  width: 100%;
+  height: 750px;
+}
+
+.popmedias-video:focus,
+.popmedias-image:focus {
+  border: none;
+}
+
+/* FILTRE  */
+.photograph_select{
+  margin: 10px 100px;
+}
+
+label {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+select {
+  font-size: 20px;
+  background-color: #901C1C;
+  color: white;
+  width: 170px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+}
+
+.line {
+  color: white;
 }

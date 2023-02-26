@@ -1,10 +1,14 @@
 function profilFactory(data) {
-    const { id, name, portrait, city, country, tagline } = data;
+    const { id, name, portrait, city, country, tagline, price } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
 
     function getPhotographerProfilDOM() {
+
+        const priceF = document.getElementById("price");
+        priceF.textContent = price + "€ / jour";
+
         const header = document.querySelector(".photograph-header");
         const profilCard = document.createElement("div");
         profilCard.classList = "profil-card";
