@@ -2,26 +2,11 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <title>Fisheye - photographe </title>
-    <!-- Api -->
-
-    <script type="module" src="./scripts/api.js"></script>
-
-    <!-- Factories -->
-  
-    <script type="module" src="/scripts/pages/photographer.js" defer></script>
-    <script type="module" src="/scripts/factories/galleryFactory.js" defer></script>
-  
-    <!-- Utils -->
-  
-    <script type="module" src="/scripts/utils/contactForm.js" defer></script>
-    <script type="module" src="/scripts/utils/likes.js" defer></script>
-
 </head>
 
 <body>
@@ -53,20 +38,8 @@
       </div>
     -->
 
-  <!-- GALERIE -->
-  <section id="photographer_gallery">
-
-  </section>
-
-    <!-- POPUP PRIX ET LIKE -->
-    <section tabindex="1" id="popup">
-      <div class="popup-content">
-        <p class="profil-like">50
-          <i class="fa-solid fa-heart fa"></i>
-        </p>
-        <span class="price-day">20</span>
-      </div>
-    </section>
+      <!-- GALERIE -->
+  <section id="photographer_gallery"></section>
 
   <!-- FORMULAIRE -->
 
@@ -85,19 +58,15 @@
       <form id="contactForm">
         <div>
           <label for="firstName">Prénom</label>
-          <i id="error-name"></i>
           <input type="text" id="firstName">
 
           <label for="lastName">Nom</label>
-          <i id="error-lastName"></i>
           <input type="text" id="lastName">
 
           <label for="email">Email</label>
-          <i id="error-email"></i>
           <input type="text" id="email">
 
           <label for="textArea">Votre message</label>
-          <i id="error-message"></i>
           <textarea form="contactForm" id="textArea"></textarea>
 
         </div>
@@ -108,6 +77,19 @@
 
     </div>
   </div>
+
+  <!-- Api -->
+
+  <script type="module" src="./scripts/api.js"></script>
+
+  <!-- Factories -->
+
+  <script type="module" src="/scripts/pages/photographer.js"></script>
+  <script type="module" src="/scripts/factories/galleryFactory.js"></script>
+
+  <!-- Utils -->
+
+  <script type="module" src="/scripts/utils/contactForm.js"></script>
 </body>
 
 </html>

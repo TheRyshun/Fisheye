@@ -1,202 +1,118 @@
 #contact_modal {
-  display: none;
+    display: none;
 }
 
 .photograph-header {
-  background-color: #fafafa;
-  height: 300px;
-  margin: 0 100px;
+    background-color: #FAFAFA;
+    height: 300px;
+    margin: 0 100px;
 }
 
 .profil-card {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 35px 0px;
-  margin-right: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 0px;
+    margin-right: 40px;
 }
 
 .profil-card img {
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
 }
 
 .profil-info {
-  margin-left: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .profil-name {
-  color: #d3573c;
-  font-size: 64px;
+    color: #D3573C;
+    font-size: 64px;
 }
 
 .profil-location {
-  color: #901c1c;
-  font-size: 24px;
+    color: #901C1C;
+    font-size: 24px
 }
 
 .profil-sentence {
-  color: #525252;
-  font-size: 18px;
+    color: #525252;
+    font-size: 18px;
 }
 
 .contact_button {
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  padding: 11px;
-  width: 170px;
-  height: 70px;
-  border: none;
-  background-color: #901c1c;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#contact_modal {
-  position: absolute;
-  top: 50%;
-  width:50%;
-  left: 25%;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .modal {
-  border-radius: 5px;
-  background-color: #db8876;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 35px;
-  margin: auto;
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: auto;
 }
 
 .modal header {
-  justify-content: space-between;
-  width: 100%;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .modal header img {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .modal header h2 {
-  font-size: 64px;
-  font-weight: normal;
-  text-align: center;
+    font-size: 64px;
+    font-weight: normal;
+    text-align: center;
 }
 
 form {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 80px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 80px;
 }
 
 form label {
-  color: #312e2e;
-  font-size: 36px;
+    color: #312E2E;
+    font-size: 36px;
 }
 
 form div {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: self-start;
-  margin-bottom: 26px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: self-start;
+    margin-bottom: 26px;
 }
 
 form input {
-  font-size: x-large;
-  width: 100%;
-  height: 68px;
-  border: none;
-  border-radius: 5px;
-}
-
-form textArea {
-  width: 100%;
-  height: 68px;
-  border-radius: 5px;
-  font-size: x-large;
+    width: 100%;
+    height: 68px;
+    border: none;
+    border-radius: 5px;
 }
 
 #contact-header {
-  font-size: 64px;
-}
-
-#photographer_gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5%;
-  margin-top: 2%;
-  margin-left: 100px;
-  margin-right: 100px;
-}
-
-#photographer_gallery article {
-  width: 30%;
-  min-width: 370px;
-  height: 350px;
-  margin-bottom: 120px;
-}
-
-.gallery-media {
-  width: 100%;
-  height: 90%;
-  -o-object-fit: cover;
-  object-fit: cover;
-}
-
-.media-content {
-  display: flex;
-  align-items: center;
-}
-
-.title {
-  margin-right: auto;
-  color: #901c1c;
-  font-size: 24px;
-}
-
-.likes {
-  margin-right: 4px;
-  color: #901C1C;
-  font-size: 24px;
-}
-
-i {
-  color: #901c1c;
-}
-
-#popup {
-  position: fixed;
-  bottom: 0;
-  right: 4%;
-  width: 300px;
-  height: 50px;
-  display: flex;
-  justify-content: space-around;
-  background-color: #db8876;
-  border-radius: 5px 5px 0 0;
-  font-size: 24px;
-}
-
-.popup-content {
-  display: flex;
-  align-items: center;
-  width: 75%;
-  justify-content: space-between;
-  color: #000;
-}
-
-.profil-like i {
-  color: #000;
+    font-size: 64px;
 }
