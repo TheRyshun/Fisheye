@@ -1,205 +1,209 @@
-let index = 0;
-let PopImage = document.querySelector(".popmedias-image");
-let PopVideo = document.querySelector(".popmedias-video");
-let PopTitleMedia = document.querySelector(".popmedias-title");
-let imageArray = [];
-let imageArrayTitle = [];
-let nowImage = false;
-let numberV;
-let limit = 0;
+import { getPhotographers } from "../api.js";
+
+const getPhotographerId = () => {
+	return parseInt(new URLSearchParams(window.location.search).get("id"), 10);
+};
+
+/*
+    Function : GetPhotographerName
+	
+	* @param void 
+	* @import : getPhotographerId / getPhotographers 
+	* @return Name
+
+    - Cette fonction permet de récupérer le nom d'un photographe en fonction de son identifiant (ID).
+	Elle utilise deux fonctions auxiliaires - getPhotographerId() pour récupérer l'ID et getPhotographers()
+	pour obtenir une liste de tous les photographes. La fonction parcourt ensuite la liste des photographes,
+	correspond l'ID avec l'ID du photographe, et extrait le prénom du photographe à partir de son nom complet. 
+	Si le prénom contient un espace ou un tiret, il le remplace par un tiret.
+
+*/
+
+let Name;
+
+const GetPhotographerName = async () => {
+	const photographerId = getPhotographerId();
+	const response = await getPhotographers();
+
+	
+	response.photographers.forEach((photographer) => {
+
+		if (photographer.id === photographerId) {
+			const value = photographer.name;
+			const words = value.split(" ");
+			let firstName = words[0];
+
+			if (firstName.includes("-")) {
+				firstName = firstName.replace(" ", "-");
+			}
+			Name = firstName;
+		}
+	});
+};
+
+GetPhotographerName();
+
 
 class PopMedias {
-  constructor() {
-    this.event();
-  }
+	constructor(listElement) {
+		this.currentElement = null;
+		this.listElement = listElement;
+		this.event();
+	}
 
-    /*
-    Function : show()
+	/*
+    Function : show
+	
+	* @param  : id 
+	* @import : getElementById / display 
+	* @return : Name
 
-    - Cette méthode permet de récupérer toutes les images et vidéos dans la galerie et de les stocker dans deux tableaux,
-    un pour les images et l'autre pour les titres d'image. Elle ajoute également un attribut "data-index" à chaque élément de la galerie,
-    qui est utilisé pour récupérer l'index de l'élément cliqué par l'utilisateur.
-    Cette méthode appelle également la méthode "display()" pour afficher la galerie.
-    */
-  show() {
-    const PopMedia = document.querySelectorAll(".gallery-media");
-    let NewData = -1;
+    - Affiche un élément spécifié en fonction de son ID. Elle met à jour la propriété "currentElement" de l'objet, 
+	puis récupère le modal HTML correspondant et le stocke dans une variable "modal". 
+	La fonction ajoute ensuite un gestionnaire d'événements pour la touche "Tab" afin d'empêcher la navigation en dehors de la fenêtre modale. 
+	Enfin, elle appelle la fonction "display" pour afficher l'élément.
 
-    imageArray.splice(0);
-    imageArrayTitle.splice(0);
-    limit = 0;
-    
-    PopMedia.forEach((Media) => {
-      Media.setAttribute("data-index", ++NewData);
-      imageArray.push(Media.getAttribute("src"));
-      imageArrayTitle.push(Media.getAttribute("alt"));
-      limit += 1;
-    });
+	*/
 
-    for (var i = 0; i < imageArray.length; i++) {
-      if (imageArray[i].endsWith(".mp4")) {
-        numberV = i;
-      }
-    }
+	show(id) {
+		this.currentElement = this.getElementById(id);
+		const modal = document.querySelector(".popmedias");
+		const modalElements = modal.querySelectorAll("button");
 
-    PopMedia.forEach((Media) => {
-      Media.addEventListener("click", function () {
-        index = Media.getAttribute("data-index");
-      });
-    });
-    this.display();
-  }
+		modal.addEventListener("keydown", function(e) {
+			if (e.key === "Tab") {
+				const lastElement = modalElements[modalElements.length - 1];
+				if (document.activeElement === lastElement) {
+					e.preventDefault();
+					modalElements[0].focus();
+				}
+			}
+		});
+		this.display();
+	}
 
-  /*
-    Function : next()
+	close() {
+		document.querySelector(".popmedias").classList.remove("show");
+		document.querySelector(".gallery-picture").focus();
+	}
 
-    -  Cette fonction permet de passer à l'image ou à la vidéo suivante dans la fenêtre pop-up en fonction de l'indice
-    de l'image ou de la vidéo actuelle. Si la limite d'images ou de vidéos est atteinte, la fonction ne fait rien.
-  */
-  next() {
-    ++index;
+	/*
+    Function : next
+	
+	* @param  :  
+	* @import : listElement / currentElement / findIndex / display 
+	* @return : 
 
-    if (index < limit) {
-      if (nowImage == true) {
-        PopImage.style.display = "block";
-        PopVideo.style.display = "none";
-        PopImage.src = imageArray[index];
-        PopTitleMedia.textContent = imageArrayTitle[index];
-        nowImage = false;
-      }
-      if (index == numberV) {
-        PopImage.style.display = "none";
-        PopVideo.style.display = "block";
-        PopVideo.src = imageArray[index];
-        PopTitleMedia.textContent = imageArrayTitle[index];
-        nowImage = true;
-      } else {
-        PopImage.style.display = "block";
-        PopVideo.style.display = "none";
-        PopImage.src = imageArray[index];
-        PopTitleMedia.textContent = imageArrayTitle[index];
-      }
-    }
-  }
-  /*
-    Function : prev()
+    - Affiche l'élément suivant dans la liste des éléments stockés dans l'objet. Elle récupère l'index de l'élément actuel dans la liste grâce à la méthode findIndex(), 
+	puis vérifie si cet élément est le dernier élément de la liste. Si c'est le cas, elle sélectionne le premier élément de la liste. 
+	Sinon, elle sélectionne l'élément suivant dans la liste. La fonction appelle ensuite la méthode "display" pour afficher l'élément courant.
 
-    -  Cette fonction permet de passer à l'image ou à la vidéo précédente dans la fenêtre pop-up en fonction de l'indice
-    de l'image ou de la vidéo actuelle. Si la limite d'images ou de vidéos est atteinte, la fonction ne fait rien.
-  */
-  prev() {
-    --index;
+	*/
 
-    if (index >= 0) {
-      if (nowImage == true) {
-        PopImage.style.display = "block";
-        PopVideo.style.display = "none";
-        PopImage.src = imageArray[index];
-        PopTitleMedia.textContent = imageArrayTitle[index];
-        nowImage = false;
-      }
-      if (index == numberV) {
-        PopImage.style.display = "none";
-        PopVideo.style.display = "block";
-        PopVideo.src = imageArray[numberV];
-        PopTitleMedia.textContent = imageArrayTitle[index];
-        nowImage = true;
-      } else {
-        PopImage.style.display = "block";
-        PopVideo.style.display = "none";
-        PopImage.src = imageArray[index];
-        PopTitleMedia.textContent = imageArrayTitle[index];
-      }
-    }
-  }
+	next() {
+		const index = this.listElement.findIndex(
+			(element) => element.id === this.currentElement?.id
+		);
+		
+		if (index === this.listElement.length - 1) {
+			this.currentElement = this.listElement[0];
+		} else {
+			this.currentElement = this.listElement[index + 1];
+		}
+		this.display();
+	}
 
-  close() {
-    document.querySelector(".popmedias").classList.remove("show");
-    document.querySelector(".gallery-picture").focus();
-  }
+	/*
+    Function : next
+	
+	* @param  :  
+	* @import : listElement / currentElement / findIndex / display 
+	* @return : 
 
-  event() {
-    document.querySelector(".popmedias-close").addEventListener("click", () => {
-      this.close();
-    });
+    - Affiche l'élément précédent dans la liste des éléments stockés dans l'objet. Elle récupère l'index de l'élément actuel dans la liste grâce à la méthode findIndex(), 
+	puis vérifie si cet élément est le premier élément de la liste. Si c'est le cas, elle sélectionne le dernier élément de la liste. 
+	Sinon, elle sélectionne l'élément précédent dans la liste. La fonction appelle ensuite la méthode "display" pour afficher l'élément courant.
 
-    document.querySelector(".popmedias-next").addEventListener("click", () => {
-      this.next();
-    });
+	*/
 
-    document.querySelector(".popmedias-prev").addEventListener("click", () => {
-      this.prev();
-    });
+	prev() {
+		const index = this.listElement.findIndex(
+			(element) => element.id === this.currentElement.id
+		);
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        this.close();
-      }
+		if (index === 0) {
+			this.currentElement = this.listElement[this.listElement.length - 1];
+		} else {
+			this.currentElement = this.listElement[index - 1];
+		}
+		this.display();
+	}
 
-      if (e.key === "ArrowRight") {
-        this.next();
-      }
+	event() {
+		document.querySelector(".popmedias-next").addEventListener("click", () => {
+			this.next();
+		});
 
-      if (e.key === "ArrowLeft") {
-        this.prev();
-      }
-    });
-  }
+		document.querySelector(".popmedias-prev").addEventListener("click", () => {
+			this.prev();
+		});
 
-  /*
-    Function : display()
+		document.querySelector(".popmedias-close").addEventListener("click", () => {
+			this.close();
+		});
 
-    - Cette fonction affiche une fenêtre pop-up avec une image ou une vidéo en fonction de ce que l'utilisateur clique.
-    Elle écoute également les événements de la touche "Entrée" sur les médias sélectionnés, et si l'utilisateur appuie sur la touche 'Entrée',
-    le même comportement qu'un clic est déclenché.
-  */
-  display() {
-    const PopMedia = document.querySelectorAll(".gallery-media");
-    const PopTitle = document.querySelector(".popmedias-title");
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" || e.key === "Esc") {
+				this.close();
+			}
 
-    PopMedia.forEach((Media) => {
-      Media.addEventListener("click", function () {
-        let dataIndex = Media.getAttribute("data-index");
-        if (Media.getAttribute("type") === "video") {
-          PopImage.style.display = "none";
-          PopVideo.style.display = "block";
-          PopVideo.src = this.src;
-          PopTitle.textContent = Media.getAttribute("alt");
-        } else {
-          PopImage.style.display = "block";
-          PopVideo.style.display = "none";
-          PopImage.src = this.src;
-          PopTitleMedia.textContent = this.alt;
-        }
-        index = dataIndex;
-        document.querySelector(".popmedias").classList.add("show");
-      });
-    });
+			if (e.key === "ArrowRight") {
+				this.next();
+			}
 
-    PopMedia.forEach((Media) => {
-      Media.addEventListener("keydown", function (e) {
-        let dataIndex = Media.getAttribute("data-index");
-        if (e.key === "Enter") {
-          if (Media.getAttribute("type") === "video") {
-            PopImage.style.display = "none";
-            PopVideo.style.display = "block";
-            PopImage.focus({ preventScroll: true });
-            PopImage.setAttribute("tabindex", "0");
-            PopVideo.src = this.src;
-            PopTitleMedia.textContent = this.alt;
-          } else {
-            PopImage.style.display = "block";
-            PopVideo.style.display = "none";
-            PopVideo.focus({ preventScroll: true });
-            PopImage.src = this.src;
-            PopTitleMedia.textContent = this.alt;
-          }
-          index = dataIndex;
-          document.querySelector(".popmedias").classList.add("show");
-        }
-      });
-    });
-  }
+			if (e.key === "ArrowLeft") {
+				this.prev();
+			}
+		});
+	}
+
+	getElementById(id) {
+		return this.listElement.find((element) => element.id === parseInt(id, 10));
+	}
+
+	/*
+    Function : display
+	
+	* @param  :  
+	* @import : currentElement 
+	* @return : 
+
+    - Affiche l'élément courant dans une fenêtre modale. Elle commence par récupérer les éléments HTML correspondant à la fenêtre modale, à l'image, à la vidéo et au titre. 
+	Elle vérifie ensuite si l'élément courant est une image ou une vidéo. Si c'est une image, elle masque la vidéo et affiche l'image. 
+	Elle met également l'attribut "alt" de l'image avec le titre de l'élément courant. Si c'est une vidéo, elle masque l'image et affiche la vidéo. 
+	La fonction met à jour le texte du titre avec le titre de l'élément courant, puis ajoute la classe "show" à la fenêtre modale pour l'afficher.
+
+	*/
+
+	display() {
+		const PopImage = document.querySelector(".popmedias-image");
+		const PopVideo = document.querySelector(".popmedias-video");
+		const PopTitleMedia = document.querySelector(".popmedias-title");
+		if (this.currentElement.image) {
+			PopVideo.style.display = "none";
+			PopImage.style.display = "block";
+			PopImage.focus({ preventScroll: true });
+			PopImage.setAttribute("tabindex", "0");
+			PopImage.src = `assets/Sample Photos/${Name}/${this.currentElement.image}`;
+			PopImage.setAttribute("alt", this.currentElement.title);
+		} else {
+			PopVideo.style.display = "block";
+			PopImage.style.display = "none";
+			PopVideo.focus({ preventScroll: true });
+			PopVideo.src = `assets/Sample Photos/${Name}/${this.currentElement.video}`;
+		}
+		PopTitleMedia.textContent = this.currentElement.title;
+		document.querySelector(".popmedias").classList.add("show");
+	}
 }
-
 export { PopMedias };

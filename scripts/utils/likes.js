@@ -1,98 +1,105 @@
 import { getPhotographerId } from "../pages/photographer.js";
 
-/*
-    Function : counterLike
-    - Lorsque l’utilisateur clique sur un cœur ou le texte du compteur de like.
+function counterLike(medias) {
+	const likes = document.querySelectorAll(".like");
 
-    - Quand l’user clique, une vérification est faite
-      pour check les médias en global et cherche l'égalité entre l’id du html et celle du json.
+	const heart = document.createElement("i");
+	heart.className = "fa-solid fa-heart fa";
 
-    - Pour finir une condition if est utilisé pour vérifier si “ like.getAttribute("checked") === "true" ”
-      pour ensuite à l’intérieur initialiser le checked en false en enlevant 1 à l’imag et au compteur global
-*/
-const counterLike = (mediasArray) => {
-    const likes = document.querySelectorAll(".like");
-    const totalLikes = document.querySelector('.profil-like');
+	/*
 
-    const heart = document.createElement("i");
-    heart.className = "fa-solid fa-heart fa";
+    - Cette fonction ajoute un événement "click" à chaque élément "like" sur la page.
+	- Lorsqu'un élément "like" est cliqué, elle met à jour le nombre de likes sur l'élément et le nombre total de likes sur la page,
+	  en fonction de si l'utilisateur a déjà aimé l'élément ou non.
+	- Elle met également à jour la propriété "like" de l'élément de la collection de médias correspondant à l'élément "like" cliqué.
 
-    likes.forEach(like => {
-        like.addEventListener("click", () => {
-            const nombreDeLikes = like.querySelector('.number-like');
-            const picId = parseInt(like.id);
+	*/
 
-            
-            mediasArray.forEach(medias => {
-                if (picId === medias.id) {
-                    if (like.getAttribute("checked") === "true") {
-                        like.setAttribute("checked", false);
-                        nombreDeLikes.textContent = parseInt(nombreDeLikes.textContent) - 1;
-                        totalLikes.textContent = parseInt(totalLikes.textContent) - 1
-                    } else {
-                        like.setAttribute("checked", true);
-                        nombreDeLikes.textContent = parseInt(nombreDeLikes.textContent) + 1;
-                        totalLikes.textContent = parseInt(totalLikes.textContent) + 1;
-                    }
-                    totalLikes.appendChild(heart);
-                    console.log("L'image : [ " + medias.id + " ] à un total de like de " +
-                     nombreDeLikes.textContent + " avec un total en global de " + totalLikes.textContent);
-                }
-            })
-        });
-        like.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                const nombreDeLikes = like.querySelector('.number-like');
-                const picId = parseInt(like.id);
-    
-                mediasArray.forEach(medias => {
-                    if (picId === medias.id) {
-                        if (like.getAttribute("checked") === "true") {
-                            like.setAttribute("checked", false);
-                            nombreDeLikes.textContent = parseInt(nombreDeLikes.textContent) - 1;
-                            totalLikes.textContent = parseInt(totalLikes.textContent) - 1
-                        } else {
-                            like.setAttribute("checked", true);
-                            nombreDeLikes.textContent = parseInt(nombreDeLikes.textContent) + 1;
-                            totalLikes.textContent = parseInt(totalLikes.textContent) + 1;
-                        }
-                        totalLikes.appendChild(heart);
-                        console.log("L'image : [ " + medias.id + " ] à un total de like de " +
-                         nombreDeLikes.textContent + " avec un total en global de " + totalLikes.textContent);
-                    }
-                })   
-            }
-        });
-    });
+	likes.forEach((element) => {
+		element.addEventListener("click", (e) => {
+			const nbrLikes = element.querySelector(".number-like");
+			const totalLikes = document.querySelector(".profil-like");
+			const mediaId = e.target.closest("article").querySelector(".gallery-media").getAttribute("id");
+			const mediaLikes = medias.find((el) => el.id === parseInt(mediaId));
+			if (mediaLikes.like === "checked") {
+				nbrLikes.textContent = parseInt(nbrLikes.textContent) - 1;
+				totalLikes.textContent = parseInt(totalLikes.textContent) - 1;
+				mediaLikes.likes -= 1;
+				mediaLikes.like = "";
+			} else {
+				nbrLikes.textContent = parseInt(nbrLikes.textContent) + 1;
+				totalLikes.textContent = parseInt(totalLikes.textContent) + 1;
+				mediaLikes.likes += 1;
+				mediaLikes.like = "checked";
+			}
+			totalLikes.appendChild(heart);
+		});
+	});
+
+	likes.forEach((element) => {
+		element.addEventListener("keydown", (e) => {
+			if (e.key === "Enter") {
+				const nbrLikes = element.querySelector(".number-like");
+				const totalLikes = document.querySelector(".profil-like");
+				const mediaId = e.target.closest("article").querySelector(".gallery-media").getAttribute("id");
+				const mediaLikes = medias.find((el) => el.id === parseInt(mediaId));
+	
+				if (mediaLikes.like === "checked") {
+					nbrLikes.textContent = parseInt(nbrLikes.textContent) - 1;
+					totalLikes.textContent = parseInt(totalLikes.textContent) - 1;
+					mediaLikes.likes -= 1;
+					mediaLikes.like = "";
+				} else {
+					nbrLikes.textContent = parseInt(nbrLikes.textContent) + 1;
+					totalLikes.textContent = parseInt(totalLikes.textContent) + 1;
+					mediaLikes.likes += 1;
+					mediaLikes.like = "checked";
+				}
+				totalLikes.appendChild(heart);	
+			}
+		});
+	});
 }
+
 
 /*
     Function : likeTotal
-    - Une boucle for qui permet de prendre les éléments des médias du photographerId en les pushs.
-    - Un boucle for qui accumulent les éléments médias pour les additionner.
-    - Affiche dans les ID = total-like en rajoutant un cœur.
-*/
+	
+	* @param  : medias 
+	* @import : getPhotographerId 
+	* @return : 
 
-const likeTotal = (medias) => {
-    const likes = [];
-    const photographerId = getPhotographerId();
+    - Récupère l'ID du photographe courant en appelant la fonction getPhotographerId().
+	- Parcourt le tableau medias pour trouver les médias qui ont le même photographerId que le photographe courant, et les ajoute à un nouveau tableau likes.
+	- Calcule le nombre total de likes pour les médias du photographe courant en additionnant les propriétés likes de tous les éléments de likes.
+	- Affiche le nombre total de likes pour les médias du photographe courant dans la page web en utilisant la méthode textContent de l'élément HTML avec la classe .profil-like.
+	- Crée un nouvel élément <i> de classe "fa-solid fa-heart", lui ajoute une marge de 5px à gauche et à droite, 
+	  puis l'ajoute à l'élément HTML avec l'ID "total-like" à l'aide de la méthode appendChild().
 
-    for (const element in medias) {
-        if (medias[element].photographerId === photographerId) {
-            likes.push(medias[element]);
-        }
-    }
+	*/
 
-    let totalLike = 0;
-    likes.forEach((element) => {
-        totalLike += parseInt(element.likes);
-    });
+function likeTotal(medias) {
+	const likes = [];
+	const photographerId = getPhotographerId();
 
-    const heart = document.createElement("i");
-    heart.className = "fa-solid fa-heart";
-    heart.style.margin = "0px 5px";
-    const Tlike = document.getElementById("total-like");
-    Tlike.textContent = totalLike;
-    Tlike.appendChild(heart);
+	for (const element in medias) {
+		if (medias[element].photographerId === photographerId) {
+			likes.push(medias[element]);
+		}
+	}
+
+	let totalLike = 0;
+	likes.forEach((element) => {
+		totalLike += parseInt(element.likes, 10);
+	});
+
+	document.querySelector(".profil-like").textContent = totalLike;
+	const heart = document.createElement("i");
+	heart.className = "fa-solid fa-heart";
+	heart.style.margin = "0px 5px";
+	const Tlike = document.getElementById("total-like");
+	Tlike.textContent = totalLike;
+	Tlike.appendChild(heart);
 }
+
 export { counterLike, likeTotal };

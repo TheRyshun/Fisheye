@@ -10,7 +10,7 @@
   <title>Fisheye - photographe </title>
     <!-- Api -->
 
-    <script type="module" src="./scripts/api.js"></script>
+    <script type="module" src="./scripts/api.js" defer></script>
 
     <!-- Factories -->
   
@@ -138,24 +138,24 @@
   </section>
 
     <!-- popmedias -->
-    <div class="popmedias" aria-label="Image closeup view" role="dialog" aria-hidden="true">
+    <div class="popmedias" id="popmedias-modal" aria-label="Image closeup view" role="dialog" aria-hidden="true">
       <div class="popmedias-content">
         <button class="popmedias-close" aria-label="Close dialog">
           <span class="fa-solid fa-xmark" aria-hidden="true"></span>
         </button>
 
-        <button class="popmedias-prev" aria-label="Previous image" tabindex="0">
+        <button class="popmedias-prev" aria-label="Ancien Article" tabindex="0">
           <span class="fa-solid fa-angle-left" aria-hidden="true"></span>
         </button>  
   
   
         <div class="popmedias-media">
-          <img class="popmedias-image" id="PIMG" src="" alt="">
+          <img class="popmedias-image" src="" alt="">
           <video controls autoplay class="popmedias-video" id="PVIDEO"> </video>
           <p class="popmedias-title"></p>
         </div>
   
-        <button class="popmedias-next" aria-label="Next image" tabindex="0">
+        <button class="popmedias-next" aria-label="Prochain Article" tabindex="0">
           <span class="fa-solid fa-angle-right" aria-hidden="true"></span>
         </button>
       </div>

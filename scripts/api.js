@@ -1,23 +1,24 @@
 /*
   Function : getAPI
 
-  -   Méthode fetch pour récupérer les informations non traitée de le photographers.json,
-  pour vérifier avec une condition if pour voir si la requête est bien de status Ok qui envoi un message console.
+  - La fonction commence par effectuer une requête fetch vers le fichier JSON, 
+    qui est stockée dans la variable res. Ensuite, un bloc conditionnel vérifie si la requête a réussi (res.ok vaut true), 
+	et affiche un message de statut et de connexion en console si c'est le cas. Si la requête a échoué, un message d'erreur est affiché en console.
 
-  -   Si le JSON est inexistant ou autres une erreur console est envoyé
+  - Enfin, la fonction renvoie la réponse res au format JSON.
 
 */
 const getAPI = async() => {
-  const res = await fetch("../data/photographers.json");
-  if (res.ok) {
-    console.log(
-      "Statut de L'API : " + res.ok + "\nConnexion : " + res.statusText
-    );
-  } else {
-    console.error(res);
-  }
-  return res.json();
-}
+	const res = await fetch("../data/photographers.json");
+	if (res.ok) {
+		console.log(
+			"Statut de L'API : " + res.ok + "\nConnexion : " + res.statusText
+		);
+	} else {
+		console.error(res);
+	}
+	return res.json();
+};
 
 
 /*
@@ -29,11 +30,9 @@ const getAPI = async() => {
 */
 
 const getPhotographers = async () => {
-  const { photographers } = await fetch("../data/photographers.json").then(
-    (res) => res.json()
-  );
-  return { photographers };
+	const { photographers } = await fetch("../data/photographers.json").then(
+		(res) => res.json()
+	);
+	return { photographers };
 };
-
-
 export { getAPI, getPhotographers };

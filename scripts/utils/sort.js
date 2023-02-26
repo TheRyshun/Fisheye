@@ -1,9 +1,7 @@
-import { displayMedia, displayPopMedias } from "../pages/photographer.js";
-import { counterLike } from "./likes.js";
+import {displayMedia, displayPopMedias} from "../pages/photographer.js";
+import {counterLike} from "./likes.js";
 
 // ------------------------------------------------------------
-
-const gallery = document.getElementById("photographer_gallery");
 
 /*
     Function : sortGallery
@@ -19,23 +17,23 @@ const gallery = document.getElementById("photographer_gallery");
 */
 
 const sortGallery = (arrayGallery) => {
-    let sortSelect = document.getElementById("select");
-    sortSelect.addEventListener("change", (e) => {
-        switch (e.target.value) {
-            case "date":
-                sortDate(arrayGallery);
-                break;
-            case "like":
-                sortLikes(arrayGallery);
-                break;
-            case "titre":
-                sortAlphabet(arrayGallery);
-                break;
-            default:
-                break;
-        }
-    });
-}
+	const sortSelect = document.getElementById("select");
+	sortSelect.addEventListener("change", (e) => {
+		switch (e.target.value) {
+		case "like":
+			sortLikes(arrayGallery);
+			break;
+		case "date":
+			sortDate(arrayGallery);
+			break;
+		case "titre":
+			sortAlphabet(arrayGallery);
+			break;
+		default:
+			break;
+		}
+	});
+};
 
 /*
     Function : sortLikes
@@ -52,21 +50,22 @@ const sortGallery = (arrayGallery) => {
 */
 
 const sortLikes = (arrayGallery) => {
-    arrayGallery.sort(function (a, b) {
-        if (a.likes < b.likes) {
-            return 1;
-        }
-        if (a.likes > b.likes) {
-            return -1;
-        }
-        return 0;
-    });
-    gallery.innerHTML = "";
+	arrayGallery.sort(function(a, b) {
+		if (a.likes < b.likes) {
+			return 1;
+		}
+		if (a.likes > b.likes) {
+			return -1;
+		}
+		return 0;
+	});
+	const gallery = document.getElementById("photographer_gallery");
+	gallery.innerHTML = "";
 
-    displayMedia(arrayGallery);
-    displayPopMedias(arrayGallery);
-    counterLike(arrayGallery);
-}
+	displayMedia(arrayGallery);
+	displayPopMedias(arrayGallery);
+	counterLike(arrayGallery);
+};
 
 
 /*
@@ -76,28 +75,28 @@ const sortLikes = (arrayGallery) => {
     en fonction de leur titre en utilisant une fonction de comparaison.
     La fonction de comparaison vérifie si le titre de l'élément "a" est inférieur à celui de "b" en utilisant la méthode "toLowerCase()"
     pour ignorer la casse, dans ce cas elle renvoie -1, si c'est supérieur, elle renvoie 1, sinon elle renvoie 0.
-    
+
     - Après le tri, la propriété "innerHTML" de l'élément "gallery" est réinitialisée à une chaîne vide.
     Ensuite, la fonction "displayMedia" est appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés, la fonction "displayPopMedias"
     est également appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés dans un "lightbox", et enfin la fonction "counterLike"
     est appelée en utilisant "arrayGallery" en paramètre pour mettre à jour le compteur de "likes" pour chaque élément.
 */
-const sortAlphabet = (arrayGallery) => {    
-    arrayGallery.sort(function (a, b) {
-        if (a.title.toLowerCase() < b.title.toLowerCase()) {
-            return -1;
-        }
-        if (a.title.toLowerCase() > b.title.toLowerCase()) {
-            return 1;
-        }
-        return 0;
-    });
-    
-    gallery.innerHTML = "";
-    displayMedia(arrayGallery);
-    displayPopMedias(arrayGallery);
-    counterLike(arrayGallery);
-}
+const sortAlphabet = (arrayGallery) => {
+	arrayGallery.sort(function(a, b) {
+		if (a.title.toLowerCase() < b.title.toLowerCase()) {
+			return -1;
+		}
+		if (a.title.toLowerCase() > b.title.toLowerCase()) {
+			return 1;
+		}
+		return 0;
+	});
+	const gallery = document.getElementById("photographer_gallery");
+	gallery.innerHTML = "";
+	displayMedia(arrayGallery);
+	displayPopMedias(arrayGallery);
+	counterLike(arrayGallery);
+};
 
 /*
     Function : sortAlphabet
@@ -105,29 +104,30 @@ const sortAlphabet = (arrayGallery) => {
     qui contient la date de chaque élément. Elle utilise la méthode "sort" pour trier les éléments dans "arrayGallery"
     en fonction de leur date en utilisant une fonction de comparaison. La fonction de comparaison vérifie
     si la date de l'élément "a" est inférieur à celle de "b", dans ce cas elle renvoie -1, si c'est supérieur, elle renvoie 1, sinon elle renvoie 0.
-    
+
     - Après le tri, la propriété "innerHTML" de l'élément "gallery" est réinitialisée à une chaîne vide.
     Ensuite, la fonction "displayMedia" est appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés,
     la fonction "displayPopMedias" est également appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés dans un "lightbox",
     et enfin la fonction "counterLike" est appelée en utilisant "arrayGallery" en paramètre pour mettre à jour le compteur de "likes" pour chaque élément.
 */
 const sortDate = (arrayGallery) => {
-    arrayGallery.sort(function (a, b) {
-        if (a.date < b.date) {
-            return -1;
-        }
-        if (a.date > b.date) {
-            return 1;
-        }
-        return 0;
-    });
-    gallery.innerHTML = "";
+	arrayGallery.sort(function(a, b) {
+		if (a.date < b.date) {
+			return -1;
+		}
+		if (a.date > b.date) {
+			return 1;
+		}
+		return 0;
+	});
+	const gallery = document.getElementById("photographer_gallery");
+	gallery.innerHTML = "";
 
-    displayMedia(arrayGallery);
-    displayPopMedias(arrayGallery);
-    counterLike(arrayGallery);
-}
+	displayMedia(arrayGallery);
+	displayPopMedias(arrayGallery);
+	counterLike(arrayGallery);
+};
 
 // ------------------------------------------------------------
 // EXPORT
-export { sortGallery };
+export {sortGallery};
