@@ -9,6 +9,14 @@ const getPhotographerId = () => {
   return parseInt(new URLSearchParams(window.location.search).get("id"), 10);
 };
 
+/*
+    Function : ContactName()
+
+Elle obtient l'identifiant d'un photographe en appelant la fonction getPhotographerId().
+Ensuite, le code effectue une requête pour obtenir le contenu d'un fichier JSON contenant des informations sur les photographes.
+Une fois que la réponse est obtenue, elle est transformée en objet JSON.
+La liste des photographes est extraite de l'objet JSON.
+*/
 const ContactName = async (photographers) => {
   const photographerId = getPhotographerId();
 
@@ -19,9 +27,9 @@ const ContactName = async (photographers) => {
   photographers = json;
 
   /*
-    -   Permet de récupérer l’ID dans l’url et vérifie si l'id du json et url ID est identique
-*/
-
+  Ensuite, la fonction boucle sur chaque photographe de la liste, et si l'identifiant du photographe correspond à celui obtenu précédemment,
+  le code récupère l'élément HTML ayant l'ID "contact-name" et modifie son contenu pour y mettre le nom du photographe correspondant.
+  */
   photographers.forEach((photographer) => {
     if (photographer.id === photographerId) {
       const profilName = document.getElementById("contact-name");
@@ -35,34 +43,43 @@ ContactName();
 const modal = document.getElementById("contact_modal");
 const form = document.querySelector("form");
 
-// Fonction pour permet d'afficher la modal du form
+/*
+    Function : displayModal()
+
+La fonction boucle sur tous les éléments de la variable elements en stockant la valeur de l'attribut "tabindex" de chaque élément
+dans un tableau tabindexList. Si l'attribut "tabindex" existe pour un élément, cela signifie qu'il peut être focusable.
+Le code supprime ensuite l'attribut "tabindex" de chaque élément et modifie le style de l'élément modal pour afficher le contenu.
+*/
+
 const displayModal = () => {
-  // Boucle pour parcourir tous les éléments
-for (var i = 0; i < elements.length; i++) {
-  // Stockage de la valeur de "tabindex" dans la liste
-  var tabindexValue = elements[i].getAttribute("tabindex");
+
+  for (let i = 0; i < elements.length; i++) {
+
+  let tabindexValue = elements[i].getAttribute("tabindex");
   if (tabindexValue) {
       tabindexList.push({element: elements[i]});
   }
-  // Suppression de l'attribut "tabindex"
   elements[i].removeAttribute("tabindex");
 }
 
   modal.style.display = "flex";
 };
 
-// Récupère le bouton dans le dom et on lui attribut au clic d'afficher la modal
+
 let btnContact = document.getElementById("contact");
 btnContact.addEventListener("click", displayModal);
 
-// Fonction pour permet de fermer la modal du form
+/*
+    Function : closeModal()
+
+La fonction boucle sur tous les éléments stockés dans le tableau tabindexList et rétablit leur attribut "tabindex"
+en leur donnant la valeur "0". Cela permet aux éléments d'être focusable à nouveau lorsque la fenêtre modale est fermée.
+Ensuite, la fonction modifie le style de l'élément modal pour cacher son contenu.
+*/
 const closeModal = () => {
-  // Boucle pour parcourir la liste des valeurs "tabindex"
-for (var i = 0; i < tabindexList.length; i++) {
-  // Ajout de l'attribut "tabindex"
+for (let i = 0; i < tabindexList.length; i++) {
   tabindexList[i].element.setAttribute("tabindex", "0");
 }
-
   modal.style.display = "none";
 };
 
@@ -196,22 +213,23 @@ form.addEventListener("submit", (e) => {
   }
 });
 
-// Ajout d'un écouteur d'événement pour l'événement keydown
-modal.addEventListener("keydown", function (event) {
-  // Vérification si la touche tab est appuyée
+/*
+Ce code ajoute un événement "keydown" à un élément modal, qui est déclenché lorsque l'utilisateur appuie sur une touche du clavier.
+Si la touche enfoncée est "Tab", l'événement empêche son comportement par défaut, récupère tous les éléments focusables dans la fenêtre modale
+(i.e., les éléments qui peuvent recevoir le focus de l'utilisateur),et calcule l'index de l'élément actuellement focusé.
+Ensuite, il détermine quel est le prochain élément focusable à cibler. Si la touche Shift est enfoncée,
+il cible l'élément précédent, sinon, il cible le suivant. 
+*/
+modal.addEventListener("keydown", (event) => {
   if (event.key === "Tab") {
-    // Prévention du comportement par défaut (tabulation vers le prochain élément)
     event.preventDefault();
-    // Récupération des éléments focusable dans la modale
-    var focusableElements = modal.querySelectorAll(
+    let focusableElements = modal.querySelectorAll(
       "textarea, input[type='text'], button"
     );
-    // Récupération de l'index de l'élément actuellement focus
-    var focusedIndex = Array.prototype.indexOf.call(
+    let focusedIndex = Array.prototype.indexOf.call(
       focusableElements,
       document.activeElement
     );
-    // Si la touche tab est pressée et que l'on se trouve sur le dernier élément focusable, on remet le focus sur le premier élément
     if (event.shiftKey) {
       if (focusedIndex === 0) {
         focusableElements[focusableElements.length - 1].focus();

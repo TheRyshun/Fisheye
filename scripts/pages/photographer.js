@@ -49,17 +49,16 @@ const displayMedia = (medias) => {
     }
   });
 };
-
+let Popbox = new PopMedias;
+  
 // LIGHTBOX
 // Fonction qui permet l'affichage de la lightbox avec event au click en récupérant leur Id
 async function displayPopMedias() {
-  let Popbox = new PopMedias;
 
-  document.querySelectorAll(".gallery-media").forEach((mediaDom) => {
-      mediaDom.addEventListener("click", function () {
+  document.querySelectorAll(".gallery-media").forEach(() => {
         Popbox.show();
-      });
   });
+  
 }
 
 

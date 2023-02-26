@@ -54,9 +54,9 @@ const galleryFactory = (data) => {
       picture.setAttribute("src", imageLink);
       picture.setAttribute("alt", title);
       picture.setAttribute("id", id);
-      picture.setAttribute("data-index", nbmf);
       picture.setAttribute("type", "image");
       picture.setAttribute("tabindex", "0");
+      picture.setAttribute("aria-label", `${title}`);
       article.appendChild(picture);
       
     } else if (video) {
@@ -68,10 +68,8 @@ const galleryFactory = (data) => {
       videos.setAttribute("src", videoLink);
       videos.setAttribute("alt", title);
       videos.setAttribute("id", id);
-      videos.setAttribute("data-index", nbmf);
       videos.setAttribute("type", "video");
       videos.setAttribute("tabindex", "0");
-
       article.appendChild(videos);
     }
 

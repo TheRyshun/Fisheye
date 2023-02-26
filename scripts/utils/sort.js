@@ -1,7 +1,10 @@
 import { displayMedia, displayPopMedias } from "../pages/photographer.js";
 import { counterLike } from "./likes.js";
+
 // ------------------------------------------------------------
+
 const gallery = document.getElementById("photographer_gallery");
+
 /*
     Function : sortGallery
     - La fonction "sortGallery" prend en paramètre un tableau "arrayGallery" qui est censé contenir des images ou des vidéos.
@@ -14,6 +17,7 @@ const gallery = document.getElementById("photographer_gallery");
     Si la valeur est "titre", la fonction "sortAlphabet" est exécutée en utilisant le tableau "arrayGallery" en paramètre.
     Si aucune des valeurs précédentes ne correspond, rien ne se produit.
 */
+
 const sortGallery = (arrayGallery) => {
     let sortSelect = document.getElementById("select");
     sortSelect.addEventListener("change", (e) => {
@@ -32,6 +36,7 @@ const sortGallery = (arrayGallery) => {
         }
     });
 }
+
 /*
     Function : sortLikes
     - La fonction "sortLikes" prend en paramètre un tableau "arrayGallery" qui est censé contenir des images
@@ -45,6 +50,7 @@ const sortGallery = (arrayGallery) => {
     la fonction "displayPopMedias" est également appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés dans un "lightbox",
     et enfin la fonction "counterLike" est appelée en utilisant "arrayGallery" en paramètre pour mettre à jour le compteur de "likes" pour chaque élément.
 */
+
 const sortLikes = (arrayGallery) => {
     arrayGallery.sort(function (a, b) {
         if (a.likes < b.likes) {
@@ -57,12 +63,11 @@ const sortLikes = (arrayGallery) => {
     });
     gallery.innerHTML = "";
 
-    console.log(arrayGallery);
-
     displayMedia(arrayGallery);
     displayPopMedias(arrayGallery);
     counterLike(arrayGallery);
 }
+
 
 /*
     Function : sortAlphabet
@@ -77,7 +82,7 @@ const sortLikes = (arrayGallery) => {
     est également appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés dans un "lightbox", et enfin la fonction "counterLike"
     est appelée en utilisant "arrayGallery" en paramètre pour mettre à jour le compteur de "likes" pour chaque élément.
 */
-const sortAlphabet = (arrayGallery) => {
+const sortAlphabet = (arrayGallery) => {    
     arrayGallery.sort(function (a, b) {
         if (a.title.toLowerCase() < b.title.toLowerCase()) {
             return -1;
@@ -87,10 +92,8 @@ const sortAlphabet = (arrayGallery) => {
         }
         return 0;
     });
+    
     gallery.innerHTML = "";
-
-    console.log(arrayGallery);
-
     displayMedia(arrayGallery);
     displayPopMedias(arrayGallery);
     counterLike(arrayGallery);
@@ -119,8 +122,6 @@ const sortDate = (arrayGallery) => {
         return 0;
     });
     gallery.innerHTML = "";
-
-    console.log(arrayGallery);
 
     displayMedia(arrayGallery);
     displayPopMedias(arrayGallery);

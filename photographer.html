@@ -29,7 +29,7 @@
 <body>
   <header>
     <a href="/index.html">
-      <img src="assets/images/logo.png" class="logo" alt="Logo Fish" />
+      <img src="assets/images/logo.png" class="logo" alt="Logo" aria-label="Accueil" />
     </a>
   </header>
   <main id="main">
@@ -67,7 +67,7 @@
           <span id="contact-name"></span>
         </div>
         <button id="close_modal">
-          <img src="assets/icons/close.svg" alt="close contact form">
+          <img src="assets/icons/close.svg" alt="Fermez le formulaire de contact">
         </button>
       </header>
 
@@ -97,13 +97,37 @@
 
     </div>
   </div>
+   <!--
 
+      <section id="photographer_gallery">
+        <article class="gallery-picture">
+          <video class="gallery-media" src="/assets/Sample Photos/Mimi/Animals_Wild_Horses_in_the_mountains.mp4" alt="Wild horses in the mountains" id="5234343" type="video" tabindex="0" data-index="0"></video>
+          <div class="media-content">
+            <h3 class="title">Wild horses in the mountains</h3>
+            <p class="like" id="5234343" tabindex="0">
+              <span class="number-like" id="5234343">142</span>
+              <i class="fa-solid fa-heart fa" aria-label="likes" role="button"></i>
+            </p>
+          </div>
+        </article>
+        <article class="gallery-picture">
+          <img class="gallery-media" src="/assets/Sample Photos/Mimi/Travel_Lonesome.jpg" alt="Lonesome" id="623534343" type="image" tabindex="0" data-index="1">
+          <div class="media-content">
+            <h3 class="title">Lonesome</h3>
+            <p class="like" id="623534343" tabindex="0">
+              <span class="number-like" id="623534343">88</span>
+              <i class="fa-solid fa-heart fa" aria-label="likes" role="button"></i>
+            </p>
+          </div>
+        </article>
+        </section>
+-->
    <!--FILTRE-->
    <div class="photograph_select">
     <label class="sort-text">Trier par </label>
     <select id="select">
-      <option value="date">Date</option>
       <option value="like">Popularité</option>
+      <option value="date" selected>Date</option>
       <option value="titre">Titre</option>
     </select>
   </div>
@@ -120,7 +144,7 @@
           <span class="fa-solid fa-xmark" aria-hidden="true"></span>
         </button>
 
-        <button class="popmedias-prev" aria-label="Previous image">
+        <button class="popmedias-prev" aria-label="Previous image" tabindex="0">
           <span class="fa-solid fa-angle-left" aria-hidden="true"></span>
         </button>  
   
@@ -131,7 +155,7 @@
           <p class="popmedias-title"></p>
         </div>
   
-        <button class="popmedias-next" aria-label="Next image">
+        <button class="popmedias-next" aria-label="Next image" tabindex="0">
           <span class="fa-solid fa-angle-right" aria-hidden="true"></span>
         </button>
       </div>
