@@ -41,23 +41,22 @@ const sortGallery = (arrayGallery) => {
     ou des vidéos avec un champ "likes" qui contient le nombre de likes de chaque élément.
     Elle utilise la méthode "sort" pour trier les éléments dans "arrayGallery" en fonction de leur nombre de likes en utilisant une fonction de comparaison.
     La fonction de comparaison vérifie si le nombre de likes de l'élément "a" est inférieur à celui de "b", dans ce cas elle renvoie 1, si c'est supérieur,
-    elle renvoie -1, sinon elle renvoie 0.
+    elle renvoie -1.
 
     - Après le tri, la propriété "innerHTML" de l'élément "gallery" est réinitialisée à une chaîne vide.
     Ensuite, la fonction "displayMedia" est appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés,
-    la fonction "displayPopMedias" est également appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés dans un "lightbox",
+    la fonction "displayPopMedias" est également appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés dans un "popmedias",
     et enfin la fonction "counterLike" est appelée en utilisant "arrayGallery" en paramètre pour mettre à jour le compteur de "likes" pour chaque élément.
 */
 
 const sortLikes = (arrayGallery) => {
-	arrayGallery.sort(function(a, b) {
+	arrayGallery.sort( (a, b) => {
 		if (a.likes < b.likes) {
 			return 1;
 		}
 		if (a.likes > b.likes) {
 			return -1;
 		}
-		return 0;
 	});
 	const gallery = document.getElementById("photographer_gallery");
 	gallery.innerHTML = "";
@@ -74,22 +73,21 @@ const sortLikes = (arrayGallery) => {
     qui contient le titre de chaque élément. Elle utilise la méthode "sort" pour trier les éléments dans "arrayGallery"
     en fonction de leur titre en utilisant une fonction de comparaison.
     La fonction de comparaison vérifie si le titre de l'élément "a" est inférieur à celui de "b" en utilisant la méthode "toLowerCase()"
-    pour ignorer la casse, dans ce cas elle renvoie -1, si c'est supérieur, elle renvoie 1, sinon elle renvoie 0.
+    pour ignorer la casse, dans ce cas elle renvoie -1, si c'est supérieur, elle renvoie 1.
 
     - Après le tri, la propriété "innerHTML" de l'élément "gallery" est réinitialisée à une chaîne vide.
     Ensuite, la fonction "displayMedia" est appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés, la fonction "displayPopMedias"
-    est également appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés dans un "lightbox", et enfin la fonction "counterLike"
+    est également appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés dans un "popmedias", et enfin la fonction "counterLike"
     est appelée en utilisant "arrayGallery" en paramètre pour mettre à jour le compteur de "likes" pour chaque élément.
 */
 const sortAlphabet = (arrayGallery) => {
-	arrayGallery.sort(function(a, b) {
+	arrayGallery.sort((a, b) => {
 		if (a.title.toLowerCase() < b.title.toLowerCase()) {
 			return -1;
 		}
 		if (a.title.toLowerCase() > b.title.toLowerCase()) {
 			return 1;
 		}
-		return 0;
 	});
 	const gallery = document.getElementById("photographer_gallery");
 	gallery.innerHTML = "";
@@ -103,22 +101,21 @@ const sortAlphabet = (arrayGallery) => {
     - La fonction "sortDate" prend en paramètre un tableau "arrayGallery" qui est censé contenir des images ou des vidéos avec un champ "date"
     qui contient la date de chaque élément. Elle utilise la méthode "sort" pour trier les éléments dans "arrayGallery"
     en fonction de leur date en utilisant une fonction de comparaison. La fonction de comparaison vérifie
-    si la date de l'élément "a" est inférieur à celle de "b", dans ce cas elle renvoie -1, si c'est supérieur, elle renvoie 1, sinon elle renvoie 0.
+    si la date de l'élément "a" est inférieur à celle de "b", dans ce cas elle renvoie -1, si c'est supérieur, elle renvoie 1.
 
     - Après le tri, la propriété "innerHTML" de l'élément "gallery" est réinitialisée à une chaîne vide.
     Ensuite, la fonction "displayMedia" est appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés,
-    la fonction "displayPopMedias" est également appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés dans un "lightbox",
+    la fonction "displayPopMedias" est également appelée en utilisant "arrayGallery" en paramètre pour afficher les éléments triés dans un "popmedias",
     et enfin la fonction "counterLike" est appelée en utilisant "arrayGallery" en paramètre pour mettre à jour le compteur de "likes" pour chaque élément.
 */
 const sortDate = (arrayGallery) => {
-	arrayGallery.sort(function(a, b) {
+	arrayGallery.sort((a, b) => {
 		if (a.date < b.date) {
 			return -1;
 		}
 		if (a.date > b.date) {
 			return 1;
 		}
-		return 0;
 	});
 	const gallery = document.getElementById("photographer_gallery");
 	gallery.innerHTML = "";

@@ -31,7 +31,6 @@ const displayData = async (photographers) => {
 const init = async() => {
 	const { photographers } = await getAPI();
 	displayData(photographers);
-	console.log(photographers);
 };
 
 init();

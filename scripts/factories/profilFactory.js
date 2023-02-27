@@ -48,7 +48,6 @@ function profilFactory(data) {
 
 	}
 	return { id, getPhotographerProfilDOM };
-    
 }
 
 export { profilFactory };

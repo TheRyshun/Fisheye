@@ -20,7 +20,8 @@ function counterLike(medias) {
 			const nbrLikes = element.querySelector(".number-like");
 			const totalLikes = document.querySelector(".profil-like");
 			const mediaId = e.target.closest("article").querySelector(".gallery-media").getAttribute("id");
-			const mediaLikes = medias.find((el) => el.id === parseInt(mediaId));
+			console.log(mediaId);
+			const mediaLikes = medias.find((el) => el.id === parseInt(mediaId)); // Vérifie si l'élement de la page mediaId et la même que l'id du json
 			if (mediaLikes.like === "checked") {
 				nbrLikes.textContent = parseInt(nbrLikes.textContent) - 1;
 				totalLikes.textContent = parseInt(totalLikes.textContent) - 1;
@@ -90,7 +91,7 @@ function likeTotal(medias) {
 
 	let totalLike = 0;
 	likes.forEach((element) => {
-		totalLike += parseInt(element.likes, 10);
+		totalLike += parseInt(element.likes);
 	});
 
 	document.querySelector(".profil-like").textContent = totalLike;

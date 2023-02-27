@@ -1,7 +1,7 @@
 import { getPhotographers } from "../api.js";
 
 const getPhotographerId = () => {
-	return parseInt(new URLSearchParams(window.location.search).get("id"), 10);
+	return parseInt(new URLSearchParams(window.location.search).get("id"));
 };
 
 /*

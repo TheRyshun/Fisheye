@@ -9,7 +9,7 @@ var elements = document.getElementsByTagName("*");
 
 // Récupération de l'ID dans l'url du profil du photographe
 const getPhotographerId = () => {
-	return parseInt(new URLSearchParams(window.location.search).get("id"), 10);
+	return parseInt(new URLSearchParams(window.location.search).get("id"));
 };
 
 /*
@@ -234,19 +234,12 @@ modal.addEventListener("keydown", (event) => {
 			focusableElements,
 			document.activeElement
 		);
-		if (event.shiftKey) {
-			if (focusedIndex === 0) {
-				focusableElements[focusableElements.length - 1].focus();
-			} else {
-				focusableElements[focusedIndex - 1].focus();
-			}
+		if (focusedIndex === focusableElements.length - 1) { // Element : 4
+			focusableElements[0].focus();
 		} else {
-			if (focusedIndex === focusableElements.length - 1) {
-				focusableElements[0].focus();
-			} else {
-				focusableElements[focusedIndex + 1].focus();
-			}
+			focusableElements[focusedIndex + 1].focus();
 		}
+
 	}
 });
 

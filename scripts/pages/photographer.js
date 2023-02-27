@@ -39,7 +39,7 @@ const displayProfil = (photographers) => {
 
 
 /*
-    Function : displayProfil
+    Function : displayMedia
 	
 	* @param  : media  
 	* @import : 
@@ -91,13 +91,13 @@ async function displayPopMedias(medias) {
 	
 	const PopPhotographer_Medias = new PopMedias(listMedias);
 	document.querySelectorAll(".gallery-media").forEach((mediaDom) => {
-		mediaDom.addEventListener("click", function (e) {
+		mediaDom.addEventListener("click", (e) => {
 			PopPhotographer_Medias.show(e.target.id);
 		});
 	});
 
 	document.querySelectorAll(".gallery-media").forEach((mediaDom) => {
-		mediaDom.addEventListener("keydown", function (e) {
+		mediaDom.addEventListener("keydown", (e) => {
 			if (e.key === "Enter") {
 				PopPhotographer_Medias.show(e.target.id);
 			}
