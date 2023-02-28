@@ -5,29 +5,28 @@ function photographerFactory(data) {
 	const url = "photographer.html?id=" + id;
 
 	function getUserCardDOM() {
-		const redirect = document.createElement( "a" );
-		redirect.setAttribute("href",url);
+		const redirect = document.createElement("a");
+		redirect.setAttribute("href", url);
 
-		const article = document.createElement( "article" );
-		const img = document.createElement( "img" );
-		const container_img = document.createElement( "div" );
+		const article = document.createElement("article");
+		const img = document.createElement("img");
+		const container_img = document.createElement("div");
 
 		container_img.classList.add("container_img");
 		img.setAttribute("src", picture);
 
-
-		const h2 = document.createElement( "h2" );
+		const h2 = document.createElement("h2");
 		h2.textContent = name;
-        
-		const location = document.createElement( "span" );
+
+		const location = document.createElement("span");
 		location.classList.add("location");
 		location.textContent = city + ", " + country;
 
-		const sentence = document.createElement( "span" );
+		const sentence = document.createElement("span");
 		sentence.classList.add("tagline");
 		sentence.textContent = tagline;
 
-		const dayPrice = document.createElement( "span" );
+		const dayPrice = document.createElement("span");
 		dayPrice.classList.add("dayprice");
 		dayPrice.textContent = price + "€/jour";
 
@@ -38,7 +37,22 @@ function photographerFactory(data) {
 		article.appendChild(location);
 		article.appendChild(sentence);
 		article.appendChild(dayPrice);
-		return (redirect);
+
+		const ariaLabelValue =
+      "Photographe: " +
+      name +
+      "; Lieu: " +
+      city +
+      ", " +
+      country +
+      "; Slogan: " +
+      tagline +
+      "; Prix: " +
+      price + "€ par jour";
+	
+		article.setAttribute("aria-label", ariaLabelValue);
+
+		return redirect;
 	}
 	return { name, picture, getUserCardDOM };
 }
