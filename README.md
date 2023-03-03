@@ -10,15 +10,15 @@
 ###
 
 <h4 align="left">Fisheye est une plateforme de partage de photographies qui permet aux utilisateurs de trouver et de contacter des photographes professionnels dans leur région. Le site web est composé de deux pages principales : la page d'accueil et la page des photographes.
-
+<br><br>
 La page d'accueil de Fisheye présente une liste de tous les photographes disponibles sur le site, avec leur nom, leur slogan, leur localisation, leur prix/heure et une image miniature de leur choix. Les utilisateurs peuvent cliquer sur la vignette d'un photographe pour accéder à sa page personnelle.
-
+<br><br>
 La page des photographes est générée dynamiquement en fonction du photographe sélectionné. Elle affiche une galerie de ses travaux, qui peuvent inclure des photos et des vidéos. Chaque média comprend un titre et un nombre de likes, qui peut être incrémenté lorsque l'utilisateur clique sur l'icône "Like". Le nombre de likes total pour un photographe correspond à la somme des likes de chacun de ses médias.
-
+<br><br>
 Les médias peuvent être triés par popularité ou par titre. Lorsque l'utilisateur clique sur un média, celui-ci s'ouvre dans une lightbox, qui permet de naviguer entre les différents éléments média en utilisant des boutons de navigation ou les touches fléchées du clavier.
-
+<br><br>
 La page des photographes affiche également un bouton pour contacter le photographe. Lorsque l'utilisateur clique sur ce bouton, un formulaire de contact s'affiche en modal. Le formulaire comprend des champs pour les noms, l'adresse électronique et le message, et le contenu des trois champs est affiché dans les logs de la console.
-
+<br><br>
 Fisheye est une plateforme conviviale et intuitive qui permet aux utilisateurs de découvrir de nouveaux photographes talentueux et de communiquer avec eux en toute simplicité.
 </h4>
 
